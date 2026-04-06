@@ -65,10 +65,45 @@ function formatRON(value) {
 }
 
 const defaultOptions = [
-  { id: "green", label: "Împrumut Verde (cel mai avantajos)", rate: 8.0 },
-  { id: "promo", label: "Promoțional", rate: 8.5 },
-  { id: "standard", label: "Standard", rate: 9.0 },
-  { id: "noguarantor", label: "Fără girant (rapid)", rate: 10.0 }
+  {
+    id: "standard",
+    label: "Împrumut Personal",
+    rate: 9.0,
+    is_promo: false,
+    icon: "home",
+    features: [
+      "Până la 30.000 RON",
+      "Perioadă: 12 – 60 luni",
+      "Fără girant (condiții speciale)",
+      "Dobândă fixă, rată lunară constantă"
+    ]
+  },
+  {
+    id: "promo",
+    label: "Împrumut Promoțional",
+    rate: 8.5,
+    is_promo: true,
+    icon: "bolt",
+    features: [
+      "Condiții speciale limitate",
+      "Aprobare rapidă",
+      "Fără comisioane de analiză",
+      "Rambursare anticipată gratuită"
+    ]
+  },
+  {
+    id: "green",
+    label: "Împrumut Verde",
+    rate: 8.0,
+    is_promo: false,
+    icon: "eco",
+    features: [
+      "Panouri solare, reabilitare termică",
+      "Condiții avantajoase speciale",
+      "Perioadă: până la 84 luni",
+      "Dobândă cea mai mică"
+    ]
+  }
 ];
 let currentOptions = [...defaultOptions];
 
