@@ -1,416 +1,438 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CAR Romcarbon Buzău – Împrumuturi și Economisire Avantajoase</title>
-  <meta name="description" content="CAR Romcarbon Buzău – Casa ta de Ajutor Reciproc cu tradiție de 25+ ani. Împrumuturi avantajoase, fond social de economisire, fără comisioane ascunse. Devino membru astăzi!" />
-  <meta name="keywords" content="CAR Buzău, împrumut nebancar Buzău, Casa de Ajutor Reciproc Romcarbon, credit nebancar Buzău, economisire Buzău, fond social" />
+  <meta name="description"
+    content="CAR Romcarbon Buzău – Casa ta de Ajutor Reciproc cu tradiție de 25+ ani. Împrumuturi avantajoase, fond social de economisire, fără comisioane ascunse. Devino membru astăzi!" />
+  <meta name="keywords"
+    content="CAR Buzău, împrumut nebancar Buzău, Casa de Ajutor Reciproc Romcarbon, credit nebancar Buzău, economisire Buzău, fond social" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://carromcarbon.ro/" />
   <!-- Open Graph -->
   <meta property="og:title" content="CAR Romcarbon Buzău – Împrumuturi și Economisire" />
-  <meta property="og:description" content="Partenerul tău financiar de încredere în Buzău. Împrumuturi rapide, dobânzi fixe, economii sigure." />
+  <meta property="og:description"
+    content="Partenerul tău financiar de încredere în Buzău. Împrumuturi rapide, dobânzi fixe, economii sigure." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ro_RO" />
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
   <link rel="stylesheet" href="src/style.css" />
 </head>
+
 <body>
 
-<!-- ===================== NAVIGATION ===================== -->
-<nav class="nav" id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <span class="nav-logo-icon">🌿</span>
-      CAR Romcarbon
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#servicii" class="nav-link">Împrumuturi</a>
-      <a href="#economisire" class="nav-link">Economisire</a>
-      <a href="#simulator" class="nav-link">Calculator</a>
-      <a href="#despre" class="nav-link">Despre Noi</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </div>
-    <div class="nav-ctas">
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-ghost">Login Portal</a>
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary">Deschide Cont →</a>
-    </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Meniu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="acasa">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80" alt="Dealurile Buzăului – peisaj natural" class="hero-img" />
-    <div class="hero-overlay"></div>
-  </div>
-  <div class="hero-content">
-    <span class="badge">Tradiție și Prosperitate</span>
-    <h1 class="hero-title">Rădăcini Puternice,<br/>Viitor Sigur.</h1>
-    <p class="hero-subtitle">Un parteneriat solid cu amprentă locală. Susținem comunitatea din Buzău cu soluții financiare umane și transparente.</p>
-    <div class="hero-ctas">
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary btn-lg">
-        Deschide Cont <span class="material-symbols-outlined">arrow_forward</span>
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-icon">🌿</span>
+        CAR Romcarbon
       </a>
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-glass btn-lg">
-        Login Portal
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">15k+</span><span class="stat-label">Membri Activi</span></div>
-      <div class="stat-divider"></div>
-      <div class="stat"><span class="stat-num">25+</span><span class="stat-label">Ani Experiență</span></div>
-      <div class="stat-divider"></div>
-      <div class="stat"><span class="stat-num" id="heroPromoRate">8,5%</span><span class="stat-label">Dobândă Promoțională</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== BENTO SERVICES ===================== -->
-<section class="section" id="servicii">
-  <div class="container">
-    <div class="section-header fade-in">
-      <span class="badge">Serviciile Noastre</span>
-      <h2 class="section-title">Tot ce ai nevoie,<br/>într-un singur loc</h2>
-    </div>
-    <div class="bento-grid fade-in">
-      <!-- Smart Savings Card -->
-      <div class="bento-card bento-savings" id="economisire">
-        <div class="bento-card-content">
-          <span class="material-symbols-outlined bento-icon" style="color:var(--tertiary)">trending_up</span>
-          <h3 class="bento-title">Economisire Inteligentă</h3>
-          <p class="bento-desc">Dobânzi competitive și siguranța unui capital bine gestionat. Fondul tău social crește în siguranță pentru tine și familia ta.</p>
-          <div class="prosperity-bar">
-            <div class="prosperity-fill" data-target="75"></div>
-          </div>
-          <p class="prosperity-label">Obiectiv mediu de economisire: <strong>75% atins</strong></p>
-        </div>
-        <div class="bento-bg-img">
-          <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600&q=70" alt="Natură Buzău" />
-        </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#servicii" class="nav-link">Împrumuturi</a>
+        <a href="#economisire" class="nav-link">Economisire</a>
+        <a href="#simulator" class="nav-link">Calculator</a>
+        <a href="#despre" class="nav-link">Despre Noi</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
-      <!-- Quick Loans Card -->
-      <div class="bento-card bento-loans">
-        <span class="material-symbols-outlined bento-icon" style="color:var(--primary-fixed)">handshake</span>
-        <h3 class="bento-title" style="color:#fff">Împrumuturi Rapide</h3>
-        <p style="color:var(--on-primary-container); line-height:1.7; margin-bottom:2rem">Creditarea de care ai nevoie, fără stres. Rapid, local și corect — pentru planurile tale de viitor.</p>
-        <a href="#simulator" class="bento-link">
-          Calculează rata ta <span class="material-symbols-outlined">chevron_right</span>
+      <div class="nav-ctas">
+        <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-ghost">Login Portal</a>
+        <a href="https://uncaronline.ro/register/sunteti-membru/BZ071" target="_blank" rel="noopener" class="btn-primary">Deschide Cont →</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Meniu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="acasa">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80"
+        alt="Dealurile Buzăului – peisaj natural" class="hero-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <span class="badge">Tradiție și Prosperitate</span>
+      <h1 class="hero-title">Rădăcini Puternice,<br />Viitor Sigur.</h1>
+      <p class="hero-subtitle">Un parteneriat solid cu amprentă locală. Susținem comunitatea din Buzău cu soluții
+        financiare umane și transparente.</p>
+      <div class="hero-ctas">
+        <a href="https://uncaronline.ro/register/sunteti-membru/BZ071" target="_blank" rel="noopener" class="btn-primary btn-lg">
+          Deschide Cont <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-glass btn-lg">
+          Login Portal
         </a>
       </div>
-      <!-- Feature cards -->
-      <div class="bento-card bento-feature fade-in">
-        <div class="feature-icon-wrap" style="background:var(--secondary-container)">
-          <span class="material-symbols-outlined" style="color:var(--on-secondary-container)">diversity_3</span>
-        </div>
-        <h4 class="feature-title">Comunitate</h4>
-        <p class="feature-desc">Suntem mai mult decât o casă de ajutor reciproc — suntem o familie.</p>
-      </div>
-      <div class="bento-card bento-feature fade-in">
-        <div class="feature-icon-wrap" style="background:var(--tertiary-container)">
-          <span class="material-symbols-outlined" style="color:var(--on-tertiary-container)">verified</span>
-        </div>
-        <h4 class="feature-title">Siguranță</h4>
-        <p class="feature-desc">Capitalul tău este protejat și reinvestit în economia locală.</p>
-      </div>
-      <div class="bento-card bento-feature fade-in">
-        <div class="feature-icon-wrap" style="background:var(--primary-container)">
-          <span class="material-symbols-outlined" style="color:var(--on-primary-container)">local_florist</span>
-        </div>
-        <h4 class="feature-title">Tradiție</h4>
-        <p class="feature-desc">Peste 25 de ani de încredere în inima județului Buzău.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">15k+</span><span class="stat-label">Membri Activi</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">25+</span><span class="stat-label">Ani Experiență</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" id="heroPromoRate">8,5%</span><span class="stat-label">Dobândă
+            Promoțională</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== LOAN TYPES ===================== -->
-<section class="section section-alt" id="imprumuturi">
-  <div class="container">
-    <div class="section-header fade-in">
-      <span class="badge">Tipuri de Împrumut</span>
-      <h2 class="section-title">Soluții pentru fiecare nevoie</h2>
-      <p class="section-desc">Dobânzi fixe, fără comisioane ascunse, rambursare anticipată fără penalizări.</p>
-    </div>
-    <div class="loans-grid fade-in" id="dynamicLoanCards">
-      <!-- Populare din script data/config.json -->
-    </div>
-  </div>
-</section>
-
-<!-- ===================== LOAN SIMULATOR ===================== -->
-<section class="section" id="simulator">
-  <div class="container">
-    <div class="section-header fade-in">
-      <span class="badge">Calculator Credit</span>
-      <h2 class="section-title">Calculează-ți rata lunară</h2>
-      <p class="section-desc">Estimare informativă. Rata exactă se stabilește la sediu.</p>
-    </div>
-    <div class="simulator-wrap fade-in">
-      <div class="simulator-card">
-        <div class="slider-group">
-          <div class="slider-label">
-            <span>Suma împrumutului</span>
-            <strong id="amountDisplay">10.000 RON</strong>
+  <!-- ===================== BENTO SERVICES ===================== -->
+  <section class="section" id="servicii">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="badge">Serviciile Noastre</span>
+        <h2 class="section-title">Tot ce ai nevoie,<br />într-un singur loc</h2>
+      </div>
+      <div class="bento-grid fade-in">
+        <!-- Smart Savings Card -->
+        <div class="bento-card bento-savings" id="economisire">
+          <div class="bento-card-content">
+            <span class="material-symbols-outlined bento-icon" style="color:var(--tertiary)">trending_up</span>
+            <h3 class="bento-title">Economisire Inteligentă</h3>
+            <p class="bento-desc">Dobânzi competitive și siguranța unui capital bine gestionat. Fondul tău social crește
+              în siguranță pentru tine și familia ta.</p>
+            <div class="prosperity-bar">
+              <div class="prosperity-fill" data-target="75"></div>
+            </div>
+            <p class="prosperity-label">Obiectiv mediu de economisire: <strong>75% atins</strong></p>
           </div>
-          <input type="range" id="amountSlider" class="slider" min="1000" max="50000" step="500" value="10000" />
-          <div class="slider-range"><span>1.000 RON</span><span>50.000 RON</span></div>
-        </div>
-        <div class="slider-group">
-          <div class="slider-label">
-            <span>Perioadă rambursare</span>
-            <strong id="periodDisplay">24 luni</strong>
-          </div>
-          <input type="range" id="periodSlider" class="slider" min="6" max="84" step="6" value="24" />
-          <div class="slider-range"><span>6 luni</span><span>84 luni</span></div>
-        </div>
-        <div class="slider-group">
-          <div class="slider-label">
-            <span>Dobândă anuală</span>
-            <strong id="rateDisplay">9%</strong>
-          </div>
-          <select id="rateSelect" class="sim-select">
-            <!-- Populated via javascript from config.json -->
-          </select>
-        </div>
-        <div class="sim-result">
-          <div class="sim-result-main">
-            <span class="sim-result-label">Rata lunară estimată</span>
-            <span class="sim-result-value" id="monthlyResult">—</span>
-          </div>
-          <div class="sim-result-details">
-            <div><span>Total de rambursat</span><strong id="totalResult">—</strong></div>
-            <div><span>Dobândă totală</span><strong id="interestResult">—</strong></div>
-            <div><span>Cost lunar per 1.000 RON</span><strong id="costResult">—</strong></div>
+          <div class="bento-bg-img">
+            <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600&q=70" alt="Natură Buzău" />
           </div>
         </div>
-        <div class="sim-cta">
-          <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center">
-            Aplică pentru acest împrumut <span class="material-symbols-outlined">arrow_forward</span>
+        <!-- Quick Loans Card -->
+        <div class="bento-card bento-loans">
+          <span class="material-symbols-outlined bento-icon" style="color:var(--primary-fixed)">handshake</span>
+          <h3 class="bento-title" style="color:#fff">Împrumuturi Rapide</h3>
+          <p style="color:var(--on-primary-container); line-height:1.7; margin-bottom:2rem">Creditarea de care ai
+            nevoie, fără stres. Rapid, local și corect — pentru planurile tale de viitor.</p>
+          <a href="#simulator" class="bento-link">
+            Calculează rata ta <span class="material-symbols-outlined">chevron_right</span>
           </a>
-          <p class="sim-disclaimer">Calculul este orientativ. Condiții exacte la sediul CAR Romcarbon Buzău.</p>
+        </div>
+        <!-- Feature cards -->
+        <div class="bento-card bento-feature fade-in">
+          <div class="feature-icon-wrap" style="background:var(--secondary-container)">
+            <span class="material-symbols-outlined" style="color:var(--on-secondary-container)">diversity_3</span>
+          </div>
+          <h4 class="feature-title">Comunitate</h4>
+          <p class="feature-desc">Suntem mai mult decât o casă de ajutor reciproc — suntem o familie.</p>
+        </div>
+        <div class="bento-card bento-feature fade-in">
+          <div class="feature-icon-wrap" style="background:var(--tertiary-container)">
+            <span class="material-symbols-outlined" style="color:var(--on-tertiary-container)">verified</span>
+          </div>
+          <h4 class="feature-title">Siguranță</h4>
+          <p class="feature-desc">Capitalul tău este protejat și reinvestit în economia locală.</p>
+        </div>
+        <div class="bento-card bento-feature fade-in">
+          <div class="feature-icon-wrap" style="background:var(--primary-container)">
+            <span class="material-symbols-outlined" style="color:var(--on-primary-container)">local_florist</span>
+          </div>
+          <h4 class="feature-title">Tradiție</h4>
+          <p class="feature-desc">Peste 25 de ani de încredere în inima județului Buzău.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== ABOUT ===================== -->
-<section class="section section-alt" id="despre">
-  <div class="container">
-    <div class="about-grid fade-in">
-      <div class="about-img-col">
-        <div class="about-img-wrap">
-          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&q=80" alt="Cuplu senior fericit în naturile Buzăului" class="about-img" />
-          <div class="about-blob about-blob-1"></div>
-          <div class="about-blob about-blob-2"></div>
-          <div class="testimonial-float">
-            <p class="testimonial-text">„La CAR Romcarbon, ne simțim respectați și ascultați. E ca și cum am vorbi cu un vecin de încredere."</p>
-            <p class="testimonial-author">— Familia Ionescu, Membri din 2005</p>
-          </div>
-        </div>
+  <!-- ===================== LOAN TYPES ===================== -->
+  <section class="section section-alt" id="imprumuturi">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="badge">Tipuri de Împrumut</span>
+        <h2 class="section-title">Soluții pentru fiecare nevoie</h2>
+        <p class="section-desc">Dobânzi fixe, fără comisioane ascunse, rambursare anticipată fără penalizări.</p>
       </div>
-      <div class="about-text-col">
-        <span class="badge">Povestea Noastră</span>
-        <h2 class="section-title" style="margin-top:1rem">Tradiție, Comunitate și Pământul Buzăului.</h2>
-        <p class="about-p">Povestea noastră este strâns legată de dealurile Buzăului și de oamenii care le muncesc. Nu suntem doar o instituție financiară — suntem partenerii tăi de drum lung.</p>
-        <p class="about-p">Fiecare împrumut acordat și fiecare economie depusă la noi rămâne în comunitate. Susținem proiectele locale, ajutăm tinerii să înceapă și oferim seniorilor liniștea unei bătrânețe asigurate.</p>
-        <div class="about-stats">
-          <div class="about-stat">
-            <span class="about-stat-num">15k+</span>
-            <span class="about-stat-label">Membri Activi</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-num">25+ Ani</span>
-            <span class="about-stat-label">De Experiență</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-num">100%</span>
-            <span class="about-stat-label">Local Buzău</span>
-          </div>
-        </div>
+      <div class="loans-grid fade-in" id="dynamicLoanCards">
+        <!-- Populare din script data/config.json -->
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== DOCUMENTS ===================== -->
-<section class="section" id="documente">
-  <div class="container">
-    <div class="section-header fade-in">
-      <span class="badge">Acte Necesare</span>
-      <h2 class="section-title">Documentele de care ai nevoie</h2>
-      <p class="section-desc">Pregătește documentele înainte să vii la sediu și economisești timp.</p>
-    </div>
-    <div class="docs-grid fade-in">
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">badge</span>
-        <h4>Buletin / CI</h4>
-        <p>Copie și original act de identitate valabil.</p>
+  <!-- ===================== LOAN SIMULATOR ===================== -->
+  <section class="section" id="simulator">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="badge">Calculator Credit</span>
+        <h2 class="section-title">Calculează-ți rata lunară</h2>
+        <p class="section-desc">Estimare informativă. Rata exactă se stabilește la sediu.</p>
       </div>
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">work</span>
-        <h4>Adeverință de Venit</h4>
-        <p>Eliberată de angajator, model disponibil mai jos.</p>
-        <a href="#" class="doc-download">
-          <span class="material-symbols-outlined">download</span> Descarcă model
-        </a>
-      </div>
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">description</span>
-        <h4>Cerere de Înscriere</h4>
-        <p>Completată și semnată la sediu sau descărcată online.</p>
-        <a href="#" class="doc-download">
-          <span class="material-symbols-outlined">download</span> Descarcă formular
-        </a>
-      </div>
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">edit_note</span>
-        <h4>Cerere de Împrumut</h4>
-        <p>Formular specific pentru tipul de împrumut dorit.</p>
-        <a href="#" class="doc-download">
-          <span class="material-symbols-outlined">download</span> Descarcă formular
-        </a>
-      </div>
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">person_add</span>
-        <h4>Date Girant <small>(dacă e cazul)</small></h4>
-        <p>Buletin și adeverință de venit girant (copii).</p>
-      </div>
-      <div class="doc-card">
-        <span class="material-symbols-outlined doc-icon">account_balance</span>
-        <h4>IBAN Cont Bancar</h4>
-        <p>Pentru viramentul sumei, dacă se solicită transfer.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== CONTACT ===================== -->
-<section class="section section-alt" id="contact">
-  <div class="container">
-    <div class="contact-card fade-in">
-      <div class="contact-info">
-        <span class="badge">Contactați-ne</span>
-        <h2 class="section-title" style="margin-top:1rem">Suntem aici pentru voi</h2>
-        <p style="color:var(--on-surface-variant); margin-bottom:2.5rem; line-height:1.7">Vizitați-ne la sediu sau trimiteți-ne un mesaj. Răspundem în cel mai scurt timp posibil.</p>
-        <div class="contact-details">
-          <div class="contact-item">
-            <div class="contact-icon-wrap"><span class="material-symbols-outlined">location_on</span></div>
-            <div>
-              <h4>Adresă Sediu</h4>
-              <p>Strada Transilvaniei, Nr. 132, Buzău</p>
+      <div class="simulator-wrap fade-in">
+        <div class="simulator-card">
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Suma împrumutului</span>
+              <strong id="amountDisplay">10.000 RON</strong>
+            </div>
+            <input type="range" id="amountSlider" class="slider" min="1000" max="50000" step="500" value="10000" />
+            <div class="slider-range"><span>1.000 RON</span><span>50.000 RON</span></div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Perioadă rambursare</span>
+              <strong id="periodDisplay">24 luni</strong>
+            </div>
+            <input type="range" id="periodSlider" class="slider" min="6" max="84" step="6" value="24" />
+            <div class="slider-range"><span>6 luni</span><span>84 luni</span></div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Dobândă anuală</span>
+              <strong id="rateDisplay">9%</strong>
+            </div>
+            <select id="rateSelect" class="sim-select">
+              <!-- Populated via javascript from config.json -->
+            </select>
+          </div>
+          <div class="sim-result">
+            <div class="sim-result-main">
+              <span class="sim-result-label">Rata lunară estimată</span>
+              <span class="sim-result-value" id="monthlyResult">—</span>
+            </div>
+            <div class="sim-result-details">
+              <div><span>Total de rambursat</span><strong id="totalResult">—</strong></div>
+              <div><span>Dobândă totală</span><strong id="interestResult">—</strong></div>
+              <div><span>Cost lunar per 1.000 RON</span><strong id="costResult">—</strong></div>
             </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon-wrap"><span class="material-symbols-outlined">schedule</span></div>
-            <div>
-              <h4>Program de Lucru</h4>
-              <div class="schedule">
-                <div><span>Luni – Joi</span><span>08:00 – 16:00</span></div>
-                <div><span>Vineri</span><span>08:00 – 13:00</span></div>
-                <div class="schedule-note"><span class="material-symbols-outlined">info</span> Ultima zi lucrătoare din lună nu se lucrează cu publicul</div>
+          <div class="sim-cta">
+            <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary"
+              style="width:100%;justify-content:center">
+              Aplică pentru acest împrumut <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <p class="sim-disclaimer">Calculul este orientativ. Condiții exacte la sediul CAR Romcarbon Buzău.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section section-alt" id="despre">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-img-col">
+          <div class="about-img-wrap">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&q=80"
+              alt="Cuplu senior fericit în naturile Buzăului" class="about-img" />
+            <div class="about-blob about-blob-1"></div>
+            <div class="about-blob about-blob-2"></div>
+            <div class="testimonial-float">
+              <p class="testimonial-text">„La CAR Romcarbon, ne simțim respectați și ascultați. E ca și cum am vorbi cu
+                un vecin de încredere."</p>
+              <p class="testimonial-author">— Familia Ionescu, Membri din 2005</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-text-col">
+          <span class="badge">Povestea Noastră</span>
+          <h2 class="section-title" style="margin-top:1rem">Tradiție, Comunitate și Pământul Buzăului.</h2>
+          <p class="about-p">Povestea noastră este strâns legată de dealurile Buzăului și de oamenii care le muncesc. Nu
+            suntem doar o instituție financiară — suntem partenerii tăi de drum lung.</p>
+          <p class="about-p">Fiecare împrumut acordat și fiecare economie depusă la noi rămâne în comunitate. Susținem
+            proiectele locale, ajutăm tinerii să înceapă și oferim seniorilor liniștea unei bătrânețe asigurate.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-num">15k+</span>
+              <span class="about-stat-label">Membri Activi</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">25+ Ani</span>
+              <span class="about-stat-label">De Experiență</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">100%</span>
+              <span class="about-stat-label">Local Buzău</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DOCUMENTS ===================== -->
+  <section class="section" id="documente">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="badge">Acte Necesare</span>
+        <h2 class="section-title">Documentele de care ai nevoie</h2>
+        <p class="section-desc">Pregătește documentele înainte să vii la sediu și economisești timp.</p>
+      </div>
+      <div class="docs-grid fade-in">
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">badge</span>
+          <h4>Buletin / CI</h4>
+          <p>Copie și original act de identitate valabil.</p>
+        </div>
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">work</span>
+          <h4>Adeverință de Venit</h4>
+          <p>Eliberată de angajator, model disponibil mai jos.</p>
+          <a href="#" class="doc-download">
+            <span class="material-symbols-outlined">download</span> Descarcă model
+          </a>
+        </div>
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">description</span>
+          <h4>Cerere de Înscriere</h4>
+          <p>Completată și semnată la sediu sau descărcată online.</p>
+          <a href="#" class="doc-download">
+            <span class="material-symbols-outlined">download</span> Descarcă formular
+          </a>
+        </div>
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">edit_note</span>
+          <h4>Cerere de Împrumut</h4>
+          <p>Formular specific pentru tipul de împrumut dorit.</p>
+          <a href="#" class="doc-download">
+            <span class="material-symbols-outlined">download</span> Descarcă formular
+          </a>
+        </div>
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">person_add</span>
+          <h4>Date Girant <small>(dacă e cazul)</small></h4>
+          <p>Buletin și adeverință de venit girant (copii).</p>
+        </div>
+        <div class="doc-card">
+          <span class="material-symbols-outlined doc-icon">account_balance</span>
+          <h4>IBAN Cont Bancar</h4>
+          <p>Pentru viramentul sumei, dacă se solicită transfer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="contact-card fade-in">
+        <div class="contact-info">
+          <span class="badge">Contactați-ne</span>
+          <h2 class="section-title" style="margin-top:1rem">Suntem aici pentru voi</h2>
+          <p style="color:var(--on-surface-variant); margin-bottom:2.5rem; line-height:1.7">Vizitați-ne la sediu sau
+            trimiteți-ne un mesaj. Răspundem în cel mai scurt timp posibil.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><span class="material-symbols-outlined">location_on</span></div>
+              <div>
+                <h4>Adresă Sediu</h4>
+                <p>Strada Transilvaniei, Nr. 132, Buzău</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><span class="material-symbols-outlined">schedule</span></div>
+              <div>
+                <h4>Program de Lucru</h4>
+                <div class="schedule">
+                  <div><span>Luni – Joi</span><span>08:00 – 16:00</span></div>
+                  <div><span>Vineri</span><span>08:00 – 13:00</span></div>
+                  <div class="schedule-note"><span class="material-symbols-outlined">info</span> Ultima zi lucrătoare
+                    din lună nu se lucrează cu publicul</div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><span class="material-symbols-outlined">call</span></div>
+              <div>
+                <h4>Telefon</h4>
+                <a href="tel:+40238711155" class="contact-link">0238 711 155</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><span class="material-symbols-outlined">mail</span></div>
+              <div>
+                <h4>E-mail</h4>
+                <a href="mailto:office@carromcarbon.ro" class="contact-link">office@carromcarbon.ro</a>
               </div>
             </div>
           </div>
-          <div class="contact-item">
-            <div class="contact-icon-wrap"><span class="material-symbols-outlined">call</span></div>
-            <div>
-              <h4>Telefon</h4>
-              <a href="tel:+40238711155" class="contact-link">0238 711 155</a>
+        </div>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Nume Complet</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Ex: Ion Popescu" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Număr Telefon</label>
+                <input type="tel" id="phone" name="phone" placeholder="07xx xxx xxx" />
+              </div>
             </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon-wrap"><span class="material-symbols-outlined">mail</span></div>
-            <div>
-              <h4>E-mail</h4>
-              <a href="mailto:office@carromcarbon.ro" class="contact-link">office@carromcarbon.ro</a>
+            <div class="form-group">
+              <label for="subject">Subiect</label>
+              <select id="subject" name="subject">
+                <option>Întrebări Credite</option>
+                <option>Economisire / Fond Social</option>
+                <option>Devenire Membru</option>
+                <option>Acte Necesare</option>
+                <option>Altă Întrebare</option>
+              </select>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="message">Mesaj</label>
+              <textarea id="message" name="message" rows="4" placeholder="Cum vă putem ajuta?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
+              Trimite Mesajul <span class="material-symbols-outlined">send</span>
+            </button>
+            <p id="formSuccess" class="form-success" style="display:none">✓ Mesajul a fost trimis! Vă vom contacta în
+              curând.</p>
+          </form>
         </div>
       </div>
-      <div class="contact-form-wrap">
-        <form class="contact-form" id="contactForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName">Nume Complet</label>
-              <input type="text" id="fullName" name="fullName" placeholder="Ex: Ion Popescu" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Număr Telefon</label>
-              <input type="tel" id="phone" name="phone" placeholder="07xx xxx xxx" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="subject">Subiect</label>
-            <select id="subject" name="subject">
-              <option>Întrebări Credite</option>
-              <option>Economisire / Fond Social</option>
-              <option>Devenire Membru</option>
-              <option>Acte Necesare</option>
-              <option>Altă Întrebare</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Mesaj</label>
-            <textarea id="message" name="message" rows="4" placeholder="Cum vă putem ajuta?"></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
-            Trimite Mesajul <span class="material-symbols-outlined">send</span>
-          </button>
-          <p id="formSuccess" class="form-success" style="display:none">✓ Mesajul a fost trimis! Vă vom contacta în curând.</p>
-        </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 CAR Romcarbon</div>
+        <p class="footer-tagline">Siguranța ta financiară, cultivată cu respect și tradiție locală.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">IFN Autorizat BNR</span>
+          <span class="footer-badge">Membru UNCARSR</span>
+        </div>
+      </div>
+      <div class="footer-links-group">
+        <h5>Servicii</h5>
+        <a href="#imprumuturi">Împrumuturi</a>
+        <a href="#economisire">Economisire</a>
+        <a href="#simulator">Calculator Credit</a>
+        <a href="#documente">Documente</a>
+      </div>
+      <div class="footer-links-group">
+        <h5>Companie</h5>
+        <a href="#despre">Despre Noi</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Termeni și Condiții</a>
+        <a href="#">Politică de Confidențialitate</a>
+        <a href="https://www.anpc.ro/" target="_blank" rel="noopener">ANPC</a>
+      </div>
+      <div class="footer-links-group">
+        <h5>Cont Online</h5>
+        <a href="https://uncaronline.ro/" target="_blank" rel="noopener">Login Portal</a>
+        <a href="https://uncaronline.ro/register/sunteti-membru/BZ071" target="_blank" rel="noopener">Deschide Cont</a>
       </div>
     </div>
-  </div>
-</section>
+    <div class="footer-bottom">
+      <p>Copyright © 2026 CAR Romcarbon Buzău. Toate drepturile rezervate.</p>
+      <p>Instituție financiară nebancară, afiliată UTJCAR Buzău, membră UNCARSR.</p>
+    </div>
+  </footer>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">🌿 CAR Romcarbon</div>
-      <p class="footer-tagline">Siguranța ta financiară, cultivată cu respect și tradiție locală.</p>
-      <div class="footer-badges">
-        <span class="footer-badge">IFN Autorizat BNR</span>
-        <span class="footer-badge">Membru UNCARSR</span>
-      </div>
-    </div>
-    <div class="footer-links-group">
-      <h5>Servicii</h5>
-      <a href="#imprumuturi">Împrumuturi</a>
-      <a href="#economisire">Economisire</a>
-      <a href="#simulator">Calculator Credit</a>
-      <a href="#documente">Documente</a>
-    </div>
-    <div class="footer-links-group">
-      <h5>Companie</h5>
-      <a href="#despre">Despre Noi</a>
-      <a href="#contact">Contact</a>
-      <a href="#">Termeni și Condiții</a>
-      <a href="#">Politică de Confidențialitate</a>
-      <a href="https://www.anpc.ro/" target="_blank" rel="noopener">ANPC</a>
-    </div>
-    <div class="footer-links-group">
-      <h5>Cont Online</h5>
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener">Login Portal</a>
-      <a href="https://uncaronline.ro/" target="_blank" rel="noopener">Deschide Cont</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>Copyright © 2026 CAR Romcarbon Buzău. Toate drepturile rezervate.</p>
-    <p>Instituție financiară nebancară, afiliată UTJCAR Buzău, membră UNCARSR.</p>
-  </div>
-</footer>
-
-<script src="src/main.js"></script>
+  <script src="src/main.js"></script>
 </body>
+
 </html>
