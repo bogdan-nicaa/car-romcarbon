@@ -1,0 +1,8 @@
+{
+  "rates": {
+    "standard": 9.0,
+    "promo": 8.5,
+    "green": 8.0,
+    "noguarantor": 10.0
+  }
+}

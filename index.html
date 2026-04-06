@@ -147,7 +147,7 @@
           <span class="loan-badge">Popular</span>
         </div>
         <h3 class="loan-name">Împrumut Personal</h3>
-        <div class="loan-rate">de la <strong>9%</strong> / an</div>
+        <div class="loan-rate">de la <strong id="lblRateStandard">9%</strong> / an</div>
         <ul class="loan-features">
           <li><span class="material-symbols-outlined">check</span> Până la 30.000 RON</li>
           <li><span class="material-symbols-outlined">check</span> Perioadă: 12 – 60 luni</li>
@@ -161,7 +161,7 @@
           <span class="loan-badge loan-badge-promo">Promoțional</span>
         </div>
         <h3 class="loan-name">Împrumut Promoțional</h3>
-        <div class="loan-rate">doar <strong>8,5%</strong> / an</div>
+        <div class="loan-rate">doar <strong id="lblRatePromo">8,5%</strong> / an</div>
         <ul class="loan-features">
           <li><span class="material-symbols-outlined">check</span> Condiții speciale limitate</li>
           <li><span class="material-symbols-outlined">check</span> Aprobare rapidă</li>
@@ -175,7 +175,7 @@
           <span class="material-symbols-outlined">eco</span>
         </div>
         <h3 class="loan-name">Împrumut Verde</h3>
-        <div class="loan-rate">de la <strong>8%</strong> / an</div>
+        <div class="loan-rate">de la <strong id="lblRateGreen">8%</strong> / an</div>
         <ul class="loan-features">
           <li><span class="material-symbols-outlined">check</span> Panouri solare, reabilitare termică</li>
           <li><span class="material-symbols-outlined">check</span> Condiții avantajoase speciale</li>
@@ -219,10 +219,7 @@
             <strong id="rateDisplay">9%</strong>
           </div>
           <select id="rateSelect" class="sim-select">
-            <option value="8">8% – Împrumut Verde (cel mai avantajos)</option>
-            <option value="8.5">8,5% – Promoțional</option>
-            <option value="9" selected>9% – Standard</option>
-            <option value="10">10% – Fără girant</option>
+            <!-- Populated via javascript from config.json -->
           </select>
         </div>
         <div class="sim-result">

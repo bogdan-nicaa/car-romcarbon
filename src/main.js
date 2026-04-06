@@ -46,7 +46,7 @@ const barObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 if (prosperityFill) barObserver.observe(prosperityFill);
 
-// --- Loan Simulator ---
+// --- Loan Simulator and Dynamic Content ---
 const amountSlider = document.getElementById('amountSlider');
 const periodSlider = document.getElementById('periodSlider');
 const rateSelect = document.getElementById('rateSelect');
@@ -64,15 +64,42 @@ function formatRON(value) {
   return new Intl.NumberFormat('ro-RO', { style: 'currency', currency: 'RON', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 }
 
+const defaultRates = { standard: 9, promo: 8.5, green: 8, noguarantor: 10 };
+let currentRates = { ...defaultRates };
+
+function populateRatesAndCalculate() {
+  const rs = document.getElementById('lblRateStandard');
+  const rp = document.getElementById('lblRatePromo');
+  const rg = document.getElementById('lblRateGreen');
+  if(rs) rs.textContent = String(currentRates.standard).replace('.', ',') + '%';
+  if(rp) rp.textContent = String(currentRates.promo).replace('.', ',') + '%';
+  if(rg) rg.textContent = String(currentRates.green).replace('.', ',') + '%';
+
+  if (rateSelect) {
+    // Preserve current value if updating, or use standard as default
+    const currentVal = rateSelect.value || currentRates.standard;
+    rateSelect.innerHTML = `
+      <option value="${currentRates.green}">${String(currentRates.green).replace('.', ',')}% – Împrumut Verde (cel mai avantajos)</option>
+      <option value="${currentRates.promo}">${String(currentRates.promo).replace('.', ',')}% – Promoțional</option>
+      <option value="${currentRates.standard}" ${currentVal == currentRates.standard ? 'selected' : ''}>${String(currentRates.standard).replace('.', ',')}% – Standard</option>
+      <option value="${currentRates.noguarantor}">${String(currentRates.noguarantor).replace('.', ',')}% – Fără girant</option>
+    `;
+  }
+  calculateLoan();
+}
+
 function calculateLoan() {
+  if(!amountSlider || !periodSlider || !rateSelect) return;
   const principal = parseFloat(amountSlider.value);
   const months = parseInt(periodSlider.value);
-  const annualRate = parseFloat(rateSelect.value);
+  let annualRate = parseFloat(rateSelect.value);
+  
+  if (isNaN(annualRate)) annualRate = currentRates.standard;
   const monthlyRate = annualRate / 100 / 12;
 
   amountDisplay.textContent = formatRON(principal);
   periodDisplay.textContent = months + ' luni';
-  rateDisplay.textContent = annualRate + '%';
+  rateDisplay.textContent = String(annualRate).replace('.', ',') + '%';
 
   if (monthlyRate === 0) {
     const monthly = principal / months;
@@ -99,8 +126,21 @@ if (amountSlider) {
   amountSlider.addEventListener('input', calculateLoan);
   periodSlider.addEventListener('input', calculateLoan);
   rateSelect.addEventListener('change', calculateLoan);
-  calculateLoan(); // initial render
 }
+
+// Fetch dynamic configuration
+fetch('data/config.json')
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.rates) {
+      currentRates = data.rates;
+    }
+    populateRatesAndCalculate();
+  })
+  .catch(err => {
+    console.log("Using static default rates (failed to load config.json due to CORS/filepath).");
+    populateRatesAndCalculate();
+  });
 
 // --- Contact Form (simulated submit) ---
 const contactForm = document.getElementById('contactForm');

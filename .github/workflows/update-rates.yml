@@ -1,0 +1,42 @@
+name: Actualizare Dobanzi
+on:
+  workflow_dispatch:
+    inputs:
+      standard:
+        description: 'Dobândă Standard (%)'
+        required: true
+        default: '9.0'
+      promo:
+        description: 'Dobândă Promoțională (%)'
+        required: true
+        default: '8.5'
+      green:
+        description: 'Dobândă Verde (%)'
+        required: true
+        default: '8.0'
+      noguarantor:
+        description: 'Dobândă Fără Girant (%)'
+        required: true
+        default: '10.0'
+
+jobs:
+  update-config:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Overwrite config.json using jq
+        run: |
+          jq --arg std "${{ github.event.inputs.standard }}" \
+             --arg pro "${{ github.event.inputs.promo }}" \
+             --arg grn "${{ github.event.inputs.green }}" \
+             --arg nog "${{ github.event.inputs.noguarantor }}" \
+             '.rates.standard = ($std | tonumber) | .rates.promo = ($pro | tonumber) | .rates.green = ($grn | tonumber) | .rates.noguarantor = ($nog | tonumber)' data/config.json > tmp.json && mv tmp.json data/config.json
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/config.json
+          git commit -m "Auto: Actualizare dobanzi prin panoul de control 🚀" || echo "No changes to commit"
+          git push
