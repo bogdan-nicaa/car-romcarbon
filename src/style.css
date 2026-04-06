@@ -459,10 +459,19 @@ h1, h2, h3, h4 {
 
 /* --- LOAN CARDS --- */
 .loans-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  margin-bottom: -2rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-container-high) transparent;
 }
+.loans-grid::-webkit-scrollbar { height: 8px; }
+.loans-grid::-webkit-scrollbar-track { background: transparent; }
+.loans-grid::-webkit-scrollbar-thumb { background: var(--surface-container-high); border-radius: 8px; }
 
 .loan-card {
   background: var(--surface-container-lowest);
@@ -470,6 +479,12 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
   transition: transform 0.25s, box-shadow 0.25s;
+  min-width: 360px;
+  max-width: 400px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 .loan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
@@ -483,6 +498,7 @@ h1, h2, h3, h4 {
 }
 .loan-card-featured:hover { transform: scale(1.02) translateY(-4px); }
 .loan-card-featured h3, .loan-card-featured .loan-rate { color: var(--on-primary); }
+.loan-card-featured .loan-rate strong { color: var(--on-primary); }
 .loan-card-featured .loan-features li { color: rgba(255,255,255,0.85); }
 .loan-card-featured .material-symbols-outlined { color: var(--primary-fixed-dim); }
 
@@ -521,32 +537,21 @@ h1, h2, h3, h4 {
 .loan-features {
   list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 0.6rem;
-  overflow-x: auto;
-  padding-bottom: 0.75rem;
-  margin-bottom: -0.75rem;
-  scrollbar-width: none;
-}
-.loan-features::-webkit-scrollbar {
-  display: none;
+  margin-bottom: 1rem;
 }
 
 .loan-features li {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary);
-  background: var(--surface-container-high);
-  padding: 0.5rem 0.8rem;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--on-surface-variant);
 }
+
 .loan-card-featured .loan-features li {
-  background: rgba(255,255,255,0.15);
-  color: var(--on-primary);
+  color: rgba(255,255,255,0.85);
 }
 
 .loan-features .material-symbols-outlined { color: var(--tertiary); font-size: 1rem !important; flex-shrink: 0; }
