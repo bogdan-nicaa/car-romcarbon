@@ -28,11 +28,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Overwrite config.json using jq
         run: |
-          jq --arg std "${{ github.event.inputs.standard }}" \
-             --arg pro "${{ github.event.inputs.promo }}" \
-             --arg grn "${{ github.event.inputs.green }}" \
-             --arg nog "${{ github.event.inputs.noguarantor }}" \
-             '.rates.standard = ($std | tonumber) | .rates.promo = ($pro | tonumber) | .rates.green = ($grn | tonumber) | .rates.noguarantor = ($nog | tonumber)' data/config.json > tmp.json && mv tmp.json data/config.json
+          # Salvăm toate input-urile din GitHub într-un JSON invizibil
+          echo '${{ toJSON(github.event.inputs) }}' > inputs.json
+          
+          # JQ ia acel json, îl transformă în numere reale și îl pune direct în proprietatea '.rates' a lui config.json
+          jq --slurpfile inputs inputs.json '.rates = ($inputs[0] | to_entries | map({key: .key, value: (.value | tonumber)}) | from_entries)' data/config.json > tmp.json
+          
+          mv tmp.json data/config.json
+          rm inputs.json
       - name: Commit and Push changes
         run: |
           git config --global user.name "github-actions[bot]"
