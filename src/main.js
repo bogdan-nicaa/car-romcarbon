@@ -64,26 +64,32 @@ function formatRON(value) {
   return new Intl.NumberFormat('ro-RO', { style: 'currency', currency: 'RON', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
 }
 
-const defaultRates = { standard: 9, promo: 8.5, green: 8, noguarantor: 10 };
-let currentRates = { ...defaultRates };
+const defaultOptions = [
+  { id: "green", label: "Împrumut Verde (cel mai avantajos)", rate: 8.0 },
+  { id: "promo", label: "Promoțional", rate: 8.5 },
+  { id: "standard", label: "Standard", rate: 9.0 },
+  { id: "noguarantor", label: "Fără girant (rapid)", rate: 10.0 }
+];
+let currentOptions = [...defaultOptions];
 
 function populateRatesAndCalculate() {
   const rs = document.getElementById('lblRateStandard');
   const rp = document.getElementById('lblRatePromo');
   const rg = document.getElementById('lblRateGreen');
-  if(rs) rs.textContent = String(currentRates.standard).replace('.', ',') + '%';
-  if(rp) rp.textContent = String(currentRates.promo).replace('.', ',') + '%';
-  if(rg) rg.textContent = String(currentRates.green).replace('.', ',') + '%';
+  
+  const stdOpt = currentOptions.find(o => o.id === 'standard');
+  const promoOpt = currentOptions.find(o => o.id === 'promo');
+  const greenOpt = currentOptions.find(o => o.id === 'green');
+
+  if(rs && stdOpt) rs.textContent = String(stdOpt.rate).replace('.', ',') + '%';
+  if(rp && promoOpt) rp.textContent = String(promoOpt.rate).replace('.', ',') + '%';
+  if(rg && greenOpt) rg.textContent = String(greenOpt.rate).replace('.', ',') + '%';
 
   if (rateSelect) {
-    // Preserve current value if updating, or use standard as default
-    const currentVal = rateSelect.value || currentRates.standard;
-    rateSelect.innerHTML = `
-      <option value="${currentRates.green}">${String(currentRates.green).replace('.', ',')}% – Împrumut Verde (cel mai avantajos)</option>
-      <option value="${currentRates.promo}">${String(currentRates.promo).replace('.', ',')}% – Promoțional</option>
-      <option value="${currentRates.standard}" ${currentVal == currentRates.standard ? 'selected' : ''}>${String(currentRates.standard).replace('.', ',')}% – Standard</option>
-      <option value="${currentRates.noguarantor}">${String(currentRates.noguarantor).replace('.', ',')}% – Fără girant</option>
-    `;
+    const currentVal = rateSelect.value || (stdOpt ? stdOpt.rate : 9);
+    rateSelect.innerHTML = currentOptions.map(opt => 
+      `<option value="${opt.rate}" ${currentVal == opt.rate ? 'selected' : ''}>${String(opt.rate).replace('.', ',')}% – ${opt.label}</option>`
+    ).join('');
   }
   calculateLoan();
 }
@@ -94,7 +100,11 @@ function calculateLoan() {
   const months = parseInt(periodSlider.value);
   let annualRate = parseFloat(rateSelect.value);
   
-  if (isNaN(annualRate)) annualRate = currentRates.standard;
+  // if NaN, fallback to Standard or the first element
+  if (isNaN(annualRate)) {
+      const stdOpt = currentOptions.find(o => o.id === 'standard');
+      annualRate = stdOpt ? stdOpt.rate : (currentOptions[0] ? currentOptions[0].rate : 9);
+  }
   const monthlyRate = annualRate / 100 / 12;
 
   amountDisplay.textContent = formatRON(principal);
@@ -132,13 +142,13 @@ if (amountSlider) {
 fetch('data/config.json')
   .then(res => res.json())
   .then(data => {
-    if (data && data.rates) {
-      currentRates = data.rates;
+    if (data && data.options) {
+      currentOptions = data.options;
     }
     populateRatesAndCalculate();
   })
   .catch(err => {
-    console.log("Using static default rates (failed to load config.json due to CORS/filepath).");
+    console.log("Using static default options (failed to load config.json due to CORS/filepath).");
     populateRatesAndCalculate();
   });
 

@@ -1,23 +1,10 @@
-name: Actualizare Dobanzi
+name: Actualizare Configuratie
 on:
   workflow_dispatch:
     inputs:
-      standard:
-        description: 'Dobândă Standard (%)'
+      config_json:
+        description: 'New JSON payload'
         required: true
-        default: '9.0'
-      promo:
-        description: 'Dobândă Promoțională (%)'
-        required: true
-        default: '8.5'
-      green:
-        description: 'Dobândă Verde (%)'
-        required: true
-        default: '8.0'
-      noguarantor:
-        description: 'Dobândă Fără Girant (%)'
-        required: true
-        default: '10.0'
 
 jobs:
   update-config:
@@ -26,20 +13,13 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Overwrite config.json using jq
+      - name: Overwrite config.json
         run: |
-          # Salvăm toate input-urile din GitHub într-un JSON invizibil
-          echo '${{ toJSON(github.event.inputs) }}' > inputs.json
-          
-          # JQ ia acel json, îl transformă în numere reale și îl pune direct în proprietatea '.rates' a lui config.json
-          jq --slurpfile inputs inputs.json '.rates = ($inputs[0] | to_entries | map({key: .key, value: (.value | tonumber)}) | from_entries)' data/config.json > tmp.json
-          
-          mv tmp.json data/config.json
-          rm inputs.json
+          echo '${{ github.event.inputs.config_json }}' > data/config.json
       - name: Commit and Push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/config.json
-          git commit -m "Auto: Actualizare dobanzi prin panoul de control 🚀" || echo "No changes to commit"
+          git commit -m "Auto: Actualizare dobanzi & optiuni prin panoul de control 🚀" || echo "No changes to commit"
           git push

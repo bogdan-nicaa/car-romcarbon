@@ -1,8 +1,8 @@
 {
-  "rates": {
-    "standard": 9.0,
-    "promo": 8.5,
-    "green": 8.0,
-    "noguarantor": 10.0
-  }
+  "options": [
+    { "id": "green", "label": "Împrumut Verde (cel mai avantajos)", "rate": 8.0 },
+    { "id": "promo", "label": "Promoțional", "rate": 8.5 },
+    { "id": "standard", "label": "Standard", "rate": 9.0 },
+    { "id": "noguarantor", "label": "Fără girant (rapid)", "rate": 10.0 }
+  ]
 }
