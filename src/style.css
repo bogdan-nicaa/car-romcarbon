@@ -521,17 +521,36 @@ h1, h2, h3, h4 {
 .loan-features {
   list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: -0.75rem;
+  scrollbar-width: none;
 }
+.loan-features::-webkit-scrollbar {
+  display: none;
+}
+
 .loan-features li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--on-surface-variant);
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--surface-container-high);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
 }
+.loan-card-featured .loan-features li {
+  background: rgba(255,255,255,0.15);
+  color: var(--on-primary);
+}
+
 .loan-features .material-symbols-outlined { color: var(--tertiary); font-size: 1rem !important; flex-shrink: 0; }
+.loan-card-featured .loan-features .material-symbols-outlined { color: var(--primary-fixed-dim); }
 
 /* --- LOAN SIMULATOR --- */
 .simulator-wrap {
