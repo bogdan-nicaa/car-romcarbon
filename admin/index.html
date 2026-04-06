@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR Romcarbon - Panou de Administrare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #154212;
+            --surface: #F5DEC6;
+            --clay: #775839;
+            --bg: #F5F3ED;
+            --white: #ffffff;
+            --radius: 20px;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .admin-card {
+            background: var(--white);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px rgba(21,66,18,0.05);
+        }
+        h1 {
+            font-family: 'Noto Serif', serif;
+            margin-top: 0;
+            font-size: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--clay);
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(119,88,57,0.2);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: var(--bg);
+            color: var(--primary);
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            font-size: 14px;
+        }
+        .alert-success {
+            background: rgba(46, 125, 50, 0.1);
+            color: #2e7d32;
+        }
+        .alert-error {
+            background: rgba(211, 47, 47, 0.1);
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-card">
+    <h1>Editează Dobânzi</h1>
+    <p style="color: var(--clay); margin-bottom: 30px; font-size: 14px;">Introdu valorile noi și token-ul tău de autentificare de la GitHub pentru a actualiza instantaneu site-ul.</p>
+
+    <form id="adminForm">
+        <div class="form-group">
+            <label for="ghToken">GitHub Personal Access Token (PAT)</label>
+            <input type="password" id="ghToken" required placeholder="ghp_...">
+        </div>
+        
+        <hr style="border: 0; border-top: 1px dashed rgba(119,88,57,0.2); margin: 30px 0;">
+
+        <div class="form-group">
+            <label for="rateStandard">Dobândă Standard (%)</label>
+            <input type="number" step="0.1" id="rateStandard" required>
+        </div>
+        <div class="form-group">
+            <label for="ratePromo">Dobândă Promoțională (%)</label>
+            <input type="number" step="0.1" id="ratePromo" required>
+        </div>
+        <div class="form-group">
+            <label for="rateGreen">Dobândă Verde (%)</label>
+            <input type="number" step="0.1" id="rateGreen" required>
+        </div>
+        <div class="form-group">
+            <label for="rateNoguarantor">Dobândă Fără Girant (%)</label>
+            <input type="number" step="0.1" id="rateNoguarantor" required>
+        </div>
+
+        <button type="submit" id="btnSubmit">Salvează și Actualizează</button>
+        
+        <div id="alertBox" class="alert alert-success"></div>
+    </form>
+</div>
+
+<script>
+    // Fetch current rates from config
+    fetch('../data/config.json')
+        .then(res => res.json())
+        .then(data => {
+            if(data && data.rates) {
+                document.getElementById('rateStandard').value = data.rates.standard || 9;
+                document.getElementById('ratePromo').value = data.rates.promo || 8.5;
+                document.getElementById('rateGreen').value = data.rates.green || 8;
+                document.getElementById('rateNoguarantor').value = data.rates.noguarantor || 10;
+            }
+        }).catch(err => console.log("Eroare preluare date initiale."));
+
+    document.getElementById('adminForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btnSubmit');
+        const alertBox = document.getElementById('alertBox');
+        
+        const token = document.getElementById('ghToken').value.trim();
+        const inputs = {
+            standard: document.getElementById('rateStandard').value,
+            promo: document.getElementById('ratePromo').value,
+            green: document.getElementById('rateGreen').value,
+            noguarantor: document.getElementById('rateNoguarantor').value
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Trimitere spre GitHub...';
+        alertBox.style.display = 'none';
+
+        try {
+            // Trimitem trigger-ul către GitHub Actions "workflow_dispatch"
+            const response = await fetch('https://api.github.com/repos/bogdan-nicaa/car-romcarbon/actions/workflows/update-rates.yml/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/vnd.github+json',
+                    'Authorization': 'Bearer ' + token,
+                    'X-GitHub-Api-Version': '2022-11-28',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ref: 'main',
+                    inputs: inputs
+                })
+            });
+
+            if (response.ok) {
+                alertBox.className = 'alert alert-success';
+                alertBox.textContent = 'Succes! Comanda a fost primită de GitHub. Noul conținut va fi public în aproximativ 30 de secunde.';
+                alertBox.style.display = 'block';
+            } else {
+                const errData = await response.json().catch(() => ({}));
+                alertBox.className = 'alert alert-error';
+                alertBox.textContent = 'Eroare autentificare: ' + (errData.message || response.statusText) + '. Te rugăm să verifici dacă Token-ul tău are permisiuni de "repo" / "Actions".';
+                alertBox.style.display = 'block';
+            }
+        } catch (error) {
+            alertBox.className = 'alert alert-error';
+            alertBox.textContent = 'Eroare conexiune (' + error.message + '). Verifică dacă ești pe linkul online.';
+            alertBox.style.display = 'block';
+        }
+
+        btn.disabled = false;
+        btn.textContent = 'Salvează și Actualizează';
+    });
+</script>
+
+</body>
+</html>
