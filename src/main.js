@@ -73,20 +73,36 @@ const defaultOptions = [
 let currentOptions = [...defaultOptions];
 
 function populateRatesAndCalculate() {
-  const rs = document.getElementById('lblRateStandard');
-  const rp = document.getElementById('lblRatePromo');
-  const rg = document.getElementById('lblRateGreen');
-  
-  const stdOpt = currentOptions.find(o => o.id === 'standard');
-  const promoOpt = currentOptions.find(o => o.id === 'promo');
-  const greenOpt = currentOptions.find(o => o.id === 'green');
+  // Update Hero Promo Stat
+  const heroPromoRate = document.getElementById('heroPromoRate');
+  const promoOpt = currentOptions.find(o => o.is_promo === true) || currentOptions[0];
+  if(heroPromoRate && promoOpt) {
+    heroPromoRate.textContent = String(promoOpt.rate).replace('.', ',') + '%';
+  }
 
-  if(rs && stdOpt) rs.textContent = String(stdOpt.rate).replace('.', ',') + '%';
-  if(rp && promoOpt) rp.textContent = String(promoOpt.rate).replace('.', ',') + '%';
-  if(rg && greenOpt) rg.textContent = String(greenOpt.rate).replace('.', ',') + '%';
+  // Update Dynamic Loan Cards
+  const cardsContainer = document.getElementById('dynamicLoanCards');
+  if(cardsContainer) {
+    cardsContainer.innerHTML = currentOptions.map(opt => `
+      <div class="loan-card ${opt.is_promo ? 'loan-card-featured' : ''}">
+        <div class="loan-header">
+          <span class="material-symbols-outlined">${opt.icon || 'payments'}</span>
+          ${opt.is_promo ? '<span class="loan-badge loan-badge-promo">Promoțional</span>' : (opt.id === 'standard' ? '<span class="loan-badge">Popular</span>' : '')}
+        </div>
+        <h3 class="loan-name">${opt.label}</h3>
+        <div class="loan-rate">${opt.is_promo ? 'doar' : 'de la'} <strong>${String(opt.rate).replace('.', ',')}%</strong> / an</div>
+        <ul class="loan-features">
+          ${(opt.features || []).map(f => `<li><span class="material-symbols-outlined">check</span> ${f}</li>`).join('')}
+        </ul>
+        ${opt.is_promo ? '<a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.5rem;display:block;text-align:center">Aplică Acum</a>' : ''}
+      </div>
+    `).join('');
+  }
 
+  // Update Simulator Select Dropdown
+  const rateSelect = document.getElementById('rateSelect');
   if (rateSelect) {
-    const currentVal = rateSelect.value || (stdOpt ? stdOpt.rate : 9);
+    const currentVal = rateSelect.value || (promoOpt ? promoOpt.rate : 9);
     rateSelect.innerHTML = currentOptions.map(opt => 
       `<option value="${opt.rate}" ${currentVal == opt.rate ? 'selected' : ''}>${String(opt.rate).replace('.', ',')}% – ${opt.label}</option>`
     ).join('');

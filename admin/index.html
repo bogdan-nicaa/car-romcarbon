@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAR Romcarbon - Panou de Administrare Dinamic</title>
+    <title>CAR Romcarbon - Admin Panou Prezentare</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,16 +19,16 @@
             background-color: var(--bg);
             color: var(--primary);
             padding: 40px 20px;
-            display: flex;
-            justify-content: center;
         }
         .admin-card {
             background: var(--white);
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
+            margin: 0 auto;
             padding: 40px;
             border-radius: var(--radius);
             box-shadow: 0 10px 40px rgba(21,66,18,0.05);
+            box-sizing: border-box;
         }
         h1 {
             font-family: 'Noto Serif', serif;
@@ -45,7 +45,7 @@
             font-size: 14px;
             color: var(--clay);
         }
-        input {
+        input, textarea, select {
             width: 100%;
             padding: 14px 16px;
             border: 1px solid rgba(119,88,57,0.2);
@@ -56,7 +56,7 @@
             background: var(--bg);
             color: var(--primary);
         }
-        input:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--primary);
         }
@@ -86,21 +86,28 @@
             margin-bottom: 20px;
         }
         .btn-delete {
-            width: auto;
             background: #d32f2f;
-            padding: 14px 18px;
-            margin-top: 28px;
-            font-size: 20px;
-            line-height: 1;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            width: auto;
+            margin-top: 10px;
+            font-size: 14px;
         }
         .option-row {
+            margin-bottom: 25px;
+            background: rgba(245, 222, 198, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--clay);
+        }
+        .row-flex {
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
-            background: rgba(245, 222, 198, 0.2);
-            padding: 15px;
-            border-radius: 12px;
-            align-items: flex-start;
+        }
+        .row-flex > div {
+            flex: 1;
         }
         .alert {
             padding: 15px;
@@ -122,8 +129,8 @@
 <body>
 
 <div class="admin-card">
-    <h1>Editează Configurația Site-ului</h1>
-    <p style="color: var(--clay); margin-bottom: 30px; font-size: 14px;">Acum poți adăuga, modifica opțiuni noi la infinit în calculator.</p>
+    <h1>Editează Componentele Site-ului</h1>
+    <p style="color: var(--clay); margin-bottom: 30px; font-size: 14px;">Definește tipurile de împrumut (cardurile publicate și setările din calculator).</p>
 
     <form id="adminForm">
         <div class="form-group">
@@ -132,13 +139,10 @@
         </div>
         
         <hr style="border: 0; border-top: 1px dashed rgba(119,88,57,0.2); margin: 30px 0;">
-        <h2>Opțiuni Împrumut</h2>
 
-        <div id="dynamicFields">
-            <!-- Rândurile se vor popula din JS -->
-        </div>
+        <div id="dynamicFields"></div>
 
-        <button type="button" class="btn-surface" id="btnAddOption">+ Adaugă o opțiune nouă</button>
+        <button type="button" class="btn-surface" id="btnAddOption">+ Adaugă Tip Împrumut Nou</button>
         <button type="submit" id="btnSubmit">🚀 Publică pe Site Modificările</button>
         
         <div id="alertBox" class="alert alert-success"></div>
@@ -155,20 +159,45 @@
         optionsData.forEach((opt, index) => {
             const row = document.createElement('div');
             row.className = 'option-row';
+            
+            // Textarea value
+            const featuresText = (opt.features || []).join('\\n');
+
             row.innerHTML = `
-                <div style="flex:1">
-                    <label>ID Tehnic (eng)</label>
-                    <input type="text" value="${opt.id}" onchange="updateOpt(${index}, 'id', this.value)" required placeholder="ex: standard">
+                <div class="row-flex">
+                    <div style="flex:2">
+                        <label>Nume Tip Împrumut</label>
+                        <input type="text" value="${opt.label}" onchange="updateOpt(${index}, 'label', this.value)" required>
+                    </div>
+                    <div style="flex:1">
+                        <label>Dobândă (%)</label>
+                        <input type="number" step="0.1" value="${opt.rate}" onchange="updateOpt(${index}, 'rate', parseFloat(this.value))" required>
+                    </div>
+                    <div style="flex:1">
+                        <label>Apare ca PROMOȚIE?</label>
+                        <select onchange="updateOpt(${index}, 'is_promo', this.value === 'true')">
+                            <option value="false" ${!opt.is_promo ? 'selected' : ''}>Nu</option>
+                            <option value="true" ${opt.is_promo ? 'selected' : ''}>Da (Evidențiat)</option>
+                        </select>
+                    </div>
                 </div>
-                <div style="flex:2">
-                    <label>Nume Afișat în Calculator</label>
-                    <input type="text" value="${opt.label}" onchange="updateOpt(${index}, 'label', this.value)" required placeholder="ex: Standard">
+                <div class="row-flex">
+                    <div style="flex:1">
+                        <label>ID Tehnic (fără spații)</label>
+                        <input type="text" value="${opt.id}" onchange="updateOpt(${index}, 'id', this.value)" required>
+                    </div>
+                    <div style="flex:1">
+                        <label>Nume Iconiță (ex: bolt, eco, home)</label>
+                        <input type="text" value="${opt.icon || 'payments'}" onchange="updateOpt(${index}, 'icon', this.value)" required>
+                    </div>
                 </div>
-                <div style="flex:1">
-                    <label>Dobândă (%)</label>
-                    <input type="number" step="0.1" value="${opt.rate}" onchange="updateOpt(${index}, 'rate', parseFloat(this.value))" required>
+                <div class="form-group">
+                    <label>Caracteristici (fiecare pe rând nou)</label>
+                    <textarea rows="4" onchange="updateFeatures(${index}, this.value)" placeholder="Până la 10.000 lei...">${featuresText}</textarea>
                 </div>
-                <button type="button" class="btn-delete" title="Șterge Opțiune" onclick="removeOpt(${index})">&#10006;</button>
+                <div style="text-align: right;">
+                    <button type="button" class="btn-delete" title="Șterge Opțiune" onclick="removeOpt(${index})">Șterge Complet Cardul</button>
+                </div>
             `;
             container.appendChild(row);
         });
@@ -178,19 +207,30 @@
         optionsData[index][field] = value;
     }
 
+    window.updateFeatures = function(index, textValue) {
+        optionsData[index].features = textValue.split('\\n').filter(s => s.trim().length > 0);
+    }
+
     window.removeOpt = function(index) {
-        if(confirm('Sigur vrei să ștergi această opțiune?')) {
+        if(confirm('Sigur vrei să ștergi această opțiune din site?')) {
             optionsData.splice(index, 1);
             renderFields();
         }
     }
 
     document.getElementById('btnAddOption').addEventListener('click', () => {
-        optionsData.push({ id: "nou", label: "Opțiune Nouă", rate: 5.0 });
+        optionsData.push({ 
+            id: "nou_" + Math.floor(Math.random()*100), 
+            label: "Credit Nou", 
+            rate: 10.0, 
+            is_promo: false, 
+            icon: "payments", 
+            features: ["Caracteristică 1"] 
+        });
         renderFields();
     });
 
-    // Preluare istoric din site
+    // Fetch config on load
     fetch('../data/config.json')
         .then(res => res.json())
         .then(data => {
@@ -199,9 +239,9 @@
                 renderFields();
             }
         }).catch(err => {
-            console.log("Fișier JSON inaccesibil local. Folosesc fallback temporar.");
+            console.log("JSON not found / CORS. Utilizare mock local fallback.");
             optionsData = [
-                { id: "standard", label: "Standard", rate: 9.0 }
+                { id: "standard", label: "Credit Standard", rate: 9.0, is_promo: true, icon: "bolt", features: ["12-60 luni"] }
             ];
             renderFields();
         });
@@ -212,12 +252,10 @@
         const alertBox = document.getElementById('alertBox');
         
         const token = document.getElementById('ghToken').value.trim();
-        
-        // Pachetul final pe care îl zippăm către GitHub Actions via workflow_dispatch
         const payloadJson = JSON.stringify({ options: optionsData }, null, 2);
 
         btn.disabled = true;
-        btn.textContent = 'Trimitere spre GitHub, durează câteva secunde...';
+        btn.textContent = 'Trimitere spre GitHub...';
         alertBox.style.display = 'none';
 
         try {
@@ -237,17 +275,17 @@
 
             if (response.ok) {
                 alertBox.className = 'alert alert-success';
-                alertBox.textContent = 'Succes! Comanda a ajuns pe serverele GitHub. Noul JSON public va fi live pe site în ~30 de secunde.';
+                alertBox.textContent = 'Succes! Modificările sunt procesate pe GitHub și vor fi live (Carduri și Calculator) în aprox. 30 de secunde.';
                 alertBox.style.display = 'block';
             } else {
                 const errData = await response.json().catch(() => ({}));
                 alertBox.className = 'alert alert-error';
-                alertBox.textContent = 'Eroare autentificare: ' + (errData.message || response.statusText) + '. Te rugăm să verifici dacă Token-ul tău are permisiuni de "repo" / "Actions".';
+                alertBox.textContent = 'Eroare: ' + (errData.message || response.statusText);
                 alertBox.style.display = 'block';
             }
         } catch (error) {
             alertBox.className = 'alert alert-error';
-            alertBox.textContent = 'Eroare conexiune: ' + error.message;
+            alertBox.textContent = 'Eroare de rețea.';
             alertBox.style.display = 'block';
         }
 

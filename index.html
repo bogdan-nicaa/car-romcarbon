@@ -69,7 +69,7 @@
       <div class="stat-divider"></div>
       <div class="stat"><span class="stat-num">25+</span><span class="stat-label">Ani Experiență</span></div>
       <div class="stat-divider"></div>
-      <div class="stat"><span class="stat-num">8,5%</span><span class="stat-label">Dobândă Promoțională</span></div>
+      <div class="stat"><span class="stat-num" id="heroPromoRate">8,5%</span><span class="stat-label">Dobândă Promoțională</span></div>
     </div>
   </div>
 </section>
@@ -140,49 +140,8 @@
       <h2 class="section-title">Soluții pentru fiecare nevoie</h2>
       <p class="section-desc">Dobânzi fixe, fără comisioane ascunse, rambursare anticipată fără penalizări.</p>
     </div>
-    <div class="loans-grid fade-in">
-      <div class="loan-card">
-        <div class="loan-header">
-          <span class="material-symbols-outlined">home</span>
-          <span class="loan-badge">Popular</span>
-        </div>
-        <h3 class="loan-name">Împrumut Personal</h3>
-        <div class="loan-rate">de la <strong id="lblRateStandard">9%</strong> / an</div>
-        <ul class="loan-features">
-          <li><span class="material-symbols-outlined">check</span> Până la 30.000 RON</li>
-          <li><span class="material-symbols-outlined">check</span> Perioadă: 12 – 60 luni</li>
-          <li><span class="material-symbols-outlined">check</span> Fără girant (condiții speciale)</li>
-          <li><span class="material-symbols-outlined">check</span> Dobândă fixă, rată lunară constantă</li>
-        </ul>
-      </div>
-      <div class="loan-card loan-card-featured">
-        <div class="loan-header">
-          <span class="material-symbols-outlined">bolt</span>
-          <span class="loan-badge loan-badge-promo">Promoțional</span>
-        </div>
-        <h3 class="loan-name">Împrumut Promoțional</h3>
-        <div class="loan-rate">doar <strong id="lblRatePromo">8,5%</strong> / an</div>
-        <ul class="loan-features">
-          <li><span class="material-symbols-outlined">check</span> Condiții speciale limitate</li>
-          <li><span class="material-symbols-outlined">check</span> Aprobare rapidă</li>
-          <li><span class="material-symbols-outlined">check</span> Fără comisioane de analiză</li>
-          <li><span class="material-symbols-outlined">check</span> Rambursare anticipată gratuită</li>
-        </ul>
-        <a href="https://uncaronline.ro/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.5rem;display:block;text-align:center">Aplică Acum</a>
-      </div>
-      <div class="loan-card">
-        <div class="loan-header">
-          <span class="material-symbols-outlined">eco</span>
-        </div>
-        <h3 class="loan-name">Împrumut Verde</h3>
-        <div class="loan-rate">de la <strong id="lblRateGreen">8%</strong> / an</div>
-        <ul class="loan-features">
-          <li><span class="material-symbols-outlined">check</span> Panouri solare, reabilitare termică</li>
-          <li><span class="material-symbols-outlined">check</span> Condiții avantajoase speciale</li>
-          <li><span class="material-symbols-outlined">check</span> Perioadă: până la 84 luni</li>
-          <li><span class="material-symbols-outlined">check</span> Dobândă cea mai mică</li>
-        </ul>
-      </div>
+    <div class="loans-grid fade-in" id="dynamicLoanCards">
+      <!-- Populare din script data/config.json -->
     </div>
   </div>
 </section>
